@@ -3,15 +3,18 @@ public class Bucket {
     
     private int localDepth;
     //Each bucket has an array of element objects
-    private Elem[] elements; 
+    public Elem[] elements; 
     //bfr determines the length of the elements array
-    private int bfr;
+    public static int bfr;
+    //cluster detemines which bucket this bucket belongs to 
+    private int cluster;
     
     public Bucket()
         {
             localDepth = 1;
-            bfr = 3;
+            this.bfr = bfr;
             elements = new Elem[bfr];
+            cluster = 0;
             for(int i=0;i<bfr;i++)
                 elements[i] = new Elem();
         }
@@ -20,6 +23,7 @@ public class Bucket {
         this.localDepth = localDepth;
         this.bfr = bfr;
         elements = new Elem[bfr];
+        cluster = 0;
         for(int i=0;i<bfr;i++)
                 elements[i] = new Elem();
     }
@@ -66,10 +70,9 @@ public class Bucket {
             System.out.print("Empty Bucket");
         else{
             for(int i=0;i<bfr;i++){
-                if(!elements[i].getIsFull()){
-                    break;
+                if(elements[i].getIsFull()){
+                    System.out.print(elements[i].getValue() + " ");
                 }
-                System.out.print(elements[i].getValue() + " ");
             }
         }
     }
@@ -83,5 +86,20 @@ public class Bucket {
     //Function to get the local depth of bucket
     public int getLocalDepth(){
         return localDepth;
-    }        
+    }
+
+    //Function to get the bfr of bucket
+    public int getBfr(){
+        return bfr;
+    }
+
+    //Function to set the cluster of bucket
+    public void setCluster(int cluster){
+        this.cluster = cluster;
+    }
+    
+    //Function to get the cluster of bucket
+    public int getCluster(){
+        return cluster;
+    }
 }
