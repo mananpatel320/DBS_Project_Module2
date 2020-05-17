@@ -126,4 +126,18 @@ public class Table{
 		}
 	}
 
+	//Function to search for a key in database
+	public void searchTable(int key){
+		int position = hashMe(key);
+		Bucket a = bucks[position];
+		for(int j=0;j<a.getBfr();j++){
+			int x = a.elements[j].getValue();
+			if(x == key){
+				System.out.println("Key found at position " + position + " in the table.");
+				return;
+			}
+		}
+		System.out.println("Key not found.");
+	}
+
 }
